@@ -4,14 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HamburgerMenuDemo"
+    xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu" x:Class="HamburgerMenuDemo.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" WindowStyle="None" AllowsTransparency="True" x:Name="this_">
-    <Grid Background="Aquamarine">
-        <HamburgerMenu:HamburgerMenu Background="Blue" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left">
+    <Grid Background="WhiteSmoke">
+        <Button >
+            <icons:PackIconModern Kind="Star"/>
+        </Button>
+        <HamburgerMenu:HamburgerMenu Background="#303030" MenuIconColor
+                                     ="White" 
+                                     SelectionIndicatorColor="White" MenuItemForeground="White" 
+                                     HorizontalAlignment="Left">
             <HamburgerMenu:HamburgerMenu.Content>
-                <HamburgerMenu:HamburgerMenuItem Icon="Assets/home.png" Text="Home" SelectionCommand="{Binding ElementName=this_}"/>
-                <HamburgerMenu:HamburgerMenuItem Icon="Assets/search.png" Text="Search"/>
+                
+                <HamburgerMenu:HamburgerMenuItem  Height="25"   Text="Home" SelectionCommand="{Binding ElementName=this_}">
+                    <HamburgerMenu:HamburgerMenuItem.Icon>
+                        <icons:ModernImage Kind="Star" Brush="Wheat"/>
+                    </HamburgerMenu:HamburgerMenuItem.Icon>
+                </HamburgerMenu:HamburgerMenuItem>
+
+                <HamburgerMenu:HamburgerMenuItem  Height="25" Text="Search" >
+                    <HamburgerMenu:HamburgerMenuItem.Icon>
+                        <icons:ModernImage Kind="StockUp" Brush="Wheat"/>
+                    </HamburgerMenu:HamburgerMenuItem.Icon>
+                </HamburgerMenu:HamburgerMenuItem>
+
+                <HamburgerMenu:HamburgerMenuItem  Height="25" Text="Search" >
+                    <HamburgerMenu:HamburgerMenuItem.Icon>
+                        <icons:MaterialImage Kind="Pipe" Brush="Wheat"/>
+                    </HamburgerMenu:HamburgerMenuItem.Icon>
+                </HamburgerMenu:HamburgerMenuItem>
+
+
                 <HamburgerMenu:HamburgerMenuItem Icon="Assets/favorite.png" Text="Likes"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="Assets/list.png" Text="Lists"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="Assets/person.png" Text="Profile"/>
