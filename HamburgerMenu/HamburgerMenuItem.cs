@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Interactivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ using System.Windows.Media;
 
 namespace HamburgerMenu
 {
-    public class HamburgerMenuItem : ListBoxItem
+    public class HamburgerMenuItem : ListBoxItem, ICommandSource
     {
         static HamburgerMenuItem()
         {
@@ -32,7 +33,7 @@ namespace HamburgerMenu
             set { SetValue(IconProperty, value); }
         }
 
-        public static readonly DependencyProperty IconProperty = 
+        public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register(nameof(Icon), typeof(object), typeof(HamburgerMenuItem), new PropertyMetadata(null));
 
 
@@ -57,8 +58,49 @@ namespace HamburgerMenu
             get { return (ICommand)GetValue(SelectionCommandProperty); }
             set { SetValue(SelectionCommandProperty, value); }
         }
-
         public static readonly DependencyProperty SelectionCommandProperty =
-            DependencyProperty.Register("SelectionCommand", typeof(ICommand), typeof(HamburgerMenuItem), new PropertyMetadata(null));
+            DependencyProperty.RegisterAttached("SelectionCommand", typeof(ICommand), typeof(HamburgerMenuItem), new PropertyMetadata((ICommand)null, new PropertyChangedCallback(OnChanged)));
+
+        private static void OnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+        }
+
+        public object SelectionCommandParameter
+        {
+            get { return (object)GetValue(SelectionCommandParameterProperty); }
+            set { SetValue(SelectionCommandParameterProperty, value); }
+        }
+        public static readonly DependencyProperty SelectionCommandParameterProperty =
+            DependencyProperty.Register(nameof(SelectionCommandParameter), typeof(object), typeof(HamburgerMenuItem), new PropertyMetadata(null));
+
+        public ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty CommandProperty =
+            DependencyProperty.Register("Command", typeof(ICommand), typeof(HamburgerMenuItem), new UIPropertyMetadata(null));
+
+        public object CommandParameter
+        {
+            get { return (object)GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CommandParameter.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CommandParameterProperty =
+            DependencyProperty.Register("CommandParameter", typeof(object), typeof(HamburgerMenuItem), new UIPropertyMetadata(null));
+
+        public IInputElement CommandTarget
+        {
+            get { return (IInputElement)GetValue(CommandTargetProperty); }
+            set { SetValue(CommandTargetProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CommandTarget.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CommandTargetProperty =
+            DependencyProperty.Register("CommandTarget", typeof(IInputElement), typeof(HamburgerMenuItem), new UIPropertyMetadata(null));
+
     }
 }

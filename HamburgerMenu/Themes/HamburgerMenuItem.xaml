@@ -13,7 +13,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HamburgerMenuItem">
-                    <Button x:Name="ListBoxItemButton" Command="{TemplateBinding SelectionCommand}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                    <ToggleButton  x:Name="ListBoxItemButton" 
+                                   Command="{TemplateBinding Command}"  
+                                   CommandParameter="{TemplateBinding CommandParameter}"  
+                                   HorizontalContentAlignment="Stretch" 
+                                   VerticalContentAlignment="Stretch">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5"/>
@@ -35,11 +39,14 @@
                             </Grid>
                             <Grid Name="ItemSelectedIndicator"  Grid.Column="0" Background="{TemplateBinding SelectionIndicatorColor}" Visibility="Collapsed" />
                         </Grid>
-                    </Button>
+                    </ToggleButton>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
+                        <DataTrigger Binding="{Binding ElementName=ListBoxItemButton, Path=IsChecked}" Value="True">
                             <Setter TargetName="ItemSelectedIndicator" Property="Visibility" Value="Visible" />
-                        </Trigger>
+                        </DataTrigger>
+                        <!--<Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="ItemSelectedIndicator" Property="Visibility" Value="Visible" />
+                        </Trigger>-->
                         <Trigger SourceName="ListBoxItemButton" Property="IsPressed" Value="True">
                             <Trigger.ExitActions>
                                 <BeginStoryboard>

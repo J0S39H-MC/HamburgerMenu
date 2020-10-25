@@ -4,39 +4,49 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HamburgerMenuDemo"
-    xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu" x:Class="HamburgerMenuDemo.MainWindow"
+        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu" 
+        x:Class="HamburgerMenuDemo.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" WindowStyle="None" AllowsTransparency="True" x:Name="this_">
+        xmlns:prism="clr-namespace:Prism.Commands;assembly=Prism"
+        Title="MainWindow" Height="350" Width="525" WindowStyle="SingleBorderWindow"  x:Name="this_">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+
     <Grid Background="WhiteSmoke">
         <Button >
             <icons:PackIconModern Kind="Star"/>
         </Button>
-        <HamburgerMenu:HamburgerMenu Background="#303030" MenuIconColor
-                                     ="White" 
-                                     SelectionIndicatorColor="White" MenuItemForeground="White" 
+        <HamburgerMenu:HamburgerMenu Background="#303030" 
+                                     MenuIconColor="White" 
+                                     SelectionIndicatorColor="DodgerBlue" 
+                                     MenuItemForeground="White" 
                                      HorizontalAlignment="Left">
             <HamburgerMenu:HamburgerMenu.Content>
-                
-                <HamburgerMenu:HamburgerMenuItem  Height="25"   Text="Home" SelectionCommand="{Binding ElementName=this_}">
+                <HamburgerMenu:HamburgerMenuItem  x:Name="menuitem"  
+                                                  Height="25"  
+                                                  Text="Home" 
+                                                  Command="{Binding ClickCommand}"
+                                                  CommandParameter="Home">
                     <HamburgerMenu:HamburgerMenuItem.Icon>
                         <icons:ModernImage Kind="Star" Brush="Wheat"/>
                     </HamburgerMenu:HamburgerMenuItem.Icon>
                 </HamburgerMenu:HamburgerMenuItem>
-
-                <HamburgerMenu:HamburgerMenuItem  Height="25" Text="Search" >
+                <HamburgerMenu:HamburgerMenuItem  Height="25" Text="Search"  
+                                                  Command="{Binding ClickCommand}" 
+                                                  CommandParameter="PositionManagement">
                     <HamburgerMenu:HamburgerMenuItem.Icon>
                         <icons:ModernImage Kind="StockUp" Brush="Wheat"/>
                     </HamburgerMenu:HamburgerMenuItem.Icon>
                 </HamburgerMenu:HamburgerMenuItem>
-
-                <HamburgerMenu:HamburgerMenuItem  Height="25" Text="Search" >
+                <HamburgerMenu:HamburgerMenuItem  Height="25" Text="Search" 
+                                                  Command="{Binding ClickCommand}" 
+                                                  CommandParameter="Nominations">
                     <HamburgerMenu:HamburgerMenuItem.Icon>
                         <icons:MaterialImage Kind="Pipe" Brush="Wheat"/>
                     </HamburgerMenu:HamburgerMenuItem.Icon>
                 </HamburgerMenu:HamburgerMenuItem>
-
-
                 <HamburgerMenu:HamburgerMenuItem Icon="Assets/favorite.png" Text="Likes"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="Assets/list.png" Text="Lists"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="Assets/person.png" Text="Profile"/>

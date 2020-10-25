@@ -18,9 +18,9 @@ namespace HamburgerMenu
             set { SetValue(ContentProperty, value); }
         }
 
-        public new static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register("Content", typeof(ObservableCollection<HamburgerMenuItem>), typeof(HamburgerMenu),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
+        public new static readonly DependencyProperty ContentProperty = 
+            DependencyProperty.Register("Content", typeof(ObservableCollection<HamburgerMenuItem>), typeof(HamburgerMenu), 
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         static HamburgerMenu()
         {
