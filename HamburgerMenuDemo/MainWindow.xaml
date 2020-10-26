@@ -14,6 +14,13 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+
+        <local:MultiValueConveter x:Key="MultiValueConveter"/>
+
+        
+    </Window.Resources>
+
     <Grid Background="WhiteSmoke">
         <Button >
             <icons:PackIconModern Kind="Star"/>
@@ -23,34 +30,65 @@
                                      SelectionIndicatorColor="DodgerBlue" 
                                      MenuItemForeground="White" 
                                      HorizontalAlignment="Left">
-            <HamburgerMenu:HamburgerMenu.Content>
-                <HamburgerMenu:HamburgerMenuItem  x:Name="menuitem"  
-                                                  Height="25"  
-                                                  Text="Home" 
-                                                  Command="{Binding ClickCommand}"
-                                                  CommandParameter="Home">
-                    <HamburgerMenu:HamburgerMenuItem.Icon>
-                        <icons:ModernImage Kind="Star" Brush="Wheat"/>
-                    </HamburgerMenu:HamburgerMenuItem.Icon>
-                </HamburgerMenu:HamburgerMenuItem>
-                <HamburgerMenu:HamburgerMenuItem  Height="25" Text="Search"  
-                                                  Command="{Binding ClickCommand}" 
-                                                  CommandParameter="PositionManagement">
-                    <HamburgerMenu:HamburgerMenuItem.Icon>
-                        <icons:ModernImage Kind="StockUp" Brush="Wheat"/>
-                    </HamburgerMenu:HamburgerMenuItem.Icon>
-                </HamburgerMenu:HamburgerMenuItem>
-                <HamburgerMenu:HamburgerMenuItem  Height="25" Text="Search" 
-                                                  Command="{Binding ClickCommand}" 
-                                                  CommandParameter="Nominations">
-                    <HamburgerMenu:HamburgerMenuItem.Icon>
-                        <icons:MaterialImage Kind="Pipe" Brush="Wheat"/>
-                    </HamburgerMenu:HamburgerMenuItem.Icon>
-                </HamburgerMenu:HamburgerMenuItem>
-                <HamburgerMenu:HamburgerMenuItem Icon="Assets/favorite.png" Text="Likes"/>
+            
+            <HamburgerMenu:HamburgerMenuItem  x:Name="menuitem"  
+                                              Margin="0 5 0 5" IsMenuItemChecked="{Binding IsHomeChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              Height="25"                                               
+                                              Text="Home" 
+                                              Command="{Binding ClickCommand}"
+                                              >
+                <HamburgerMenu:HamburgerMenuItem.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MultiValueConveter }">
+                        <Binding Path="IsMenuItemChecked"  RelativeSource="{RelativeSource  Self}"/>
+                        <Binding Path="Text" RelativeSource="{RelativeSource Self}"/>
+                    </MultiBinding>
+                </HamburgerMenu:HamburgerMenuItem.CommandParameter>
+                <HamburgerMenu:HamburgerMenuItem.Icon>
+                    <icons:ModernImage Kind="Star"  Brush="Wheat"  />
+                </HamburgerMenu:HamburgerMenuItem.Icon>
+            </HamburgerMenu:HamburgerMenuItem>
+
+            <HamburgerMenu:HamburgerMenuItem  Height="25" Margin="0 15 0 5"
+                                              Text="Search"  
+                                              IsMenuItemChecked="{Binding IsSearchChecked}"
+                                              Command="{Binding ClickCommand}">
+                <HamburgerMenu:HamburgerMenuItem.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MultiValueConveter }">
+                        <Binding Path="IsMenuItemChecked"  RelativeSource="{RelativeSource  Self}"/>
+                        <Binding Path="Text" RelativeSource="{RelativeSource Self}"/>
+                    </MultiBinding>
+                </HamburgerMenu:HamburgerMenuItem.CommandParameter>
+                
+                <HamburgerMenu:HamburgerMenuItem.Icon>
+                    <icons:ModernImage Kind="StockUp" Brush="Wheat" />
+                </HamburgerMenu:HamburgerMenuItem.Icon>
+            </HamburgerMenu:HamburgerMenuItem>
+            
+            
+            <HamburgerMenu:HamburgerMenuItem  Height="25" 
+                                              Text="Search" Margin="0 15 0 5"
+                                              Command="{Binding ClickCommand}" 
+                                             >
+                <HamburgerMenu:HamburgerMenuItem.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MultiValueConveter }">
+                        <Binding Path="IsMenuItemChecked"  RelativeSource="{RelativeSource  Self}"/>
+                        <Binding Path="Text" RelativeSource="{RelativeSource Self}"/>
+                    </MultiBinding>
+                </HamburgerMenu:HamburgerMenuItem.CommandParameter>
+                <HamburgerMenu:HamburgerMenuItem.Icon>
+                    <icons:MaterialImage Kind="Pipe" Brush="Wheat" />
+                </HamburgerMenu:HamburgerMenuItem.Icon>
+            </HamburgerMenu:HamburgerMenuItem>
+
+
+
+            <!--<HamburgerMenu:HamburgerMenu.Content>
+                -->
+            <!--<HamburgerMenu:HamburgerMenuItem Icon="Assets/favorite.png" Text="Likes"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="Assets/list.png" Text="Lists"/>
-                <HamburgerMenu:HamburgerMenuItem Icon="Assets/person.png" Text="Profile"/>
-            </HamburgerMenu:HamburgerMenu.Content>
+                <HamburgerMenu:HamburgerMenuItem Icon="Assets/person.png" Text="Profile"/>-->
+            <!--
+            </HamburgerMenu:HamburgerMenu.Content>-->
         </HamburgerMenu:HamburgerMenu>
     </Grid>
 </Window>
