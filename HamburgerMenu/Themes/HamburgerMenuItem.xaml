@@ -37,8 +37,8 @@
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid Name="ItemSelectedIndicator"  Grid.Column="0" Background="{TemplateBinding SelectionIndicatorColor}" Visibility="Collapsed" />
-                        </Grid>
+                            <Grid Name="ItemSelectedIndicator"  Grid.Column="0" Background="{TemplateBinding SelectionIndicatorColor}"  Visibility="Collapsed" />
+                        </Grid> 
                     </ToggleButton>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding ElementName=ListBoxItemButton, Path=IsChecked}" Value="True">

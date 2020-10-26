@@ -53,25 +53,14 @@ namespace HamburgerMenu
         public static readonly DependencyProperty SelectionIndicatorColorProperty =
             DependencyProperty.Register("SelectionIndicatorColor", typeof(Brush), typeof(HamburgerMenuItem), new PropertyMetadata(Brushes.Blue));
 
-        public ICommand SelectionCommand
+        public bool IsMenuItemChecked
         {
-            get { return (ICommand)GetValue(SelectionCommandProperty); }
-            set { SetValue(SelectionCommandProperty, value); }
-        }
-        public static readonly DependencyProperty SelectionCommandProperty =
-            DependencyProperty.RegisterAttached("SelectionCommand", typeof(ICommand), typeof(HamburgerMenuItem), new PropertyMetadata((ICommand)null, new PropertyChangedCallback(OnChanged)));
-
-        private static void OnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
+            get { return (bool)GetValue(IsMenuItemCheckedProperty); }
+            set { SetValue(IsMenuItemCheckedProperty, value); }
         }
 
-        public object SelectionCommandParameter
-        {
-            get { return (object)GetValue(SelectionCommandParameterProperty); }
-            set { SetValue(SelectionCommandParameterProperty, value); }
-        }
-        public static readonly DependencyProperty SelectionCommandParameterProperty =
-            DependencyProperty.Register(nameof(SelectionCommandParameter), typeof(object), typeof(HamburgerMenuItem), new PropertyMetadata(null));
+        public static readonly DependencyProperty IsMenuItemCheckedProperty =
+            DependencyProperty.Register(nameof(IsMenuItemChecked), typeof(bool), typeof(HamburgerMenuItem), new PropertyMetadata(false));
 
         public ICommand Command
         {
@@ -101,6 +90,5 @@ namespace HamburgerMenu
         // Using a DependencyProperty as the backing store for CommandTarget.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CommandTargetProperty =
             DependencyProperty.Register("CommandTarget", typeof(IInputElement), typeof(HamburgerMenuItem), new UIPropertyMetadata(null));
-
     }
 }

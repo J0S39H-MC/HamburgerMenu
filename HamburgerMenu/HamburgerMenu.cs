@@ -46,15 +46,13 @@ namespace HamburgerMenu
             DependencyProperty.Register("IsOpen", typeof(bool), typeof(HamburgerMenu), new PropertyMetadata(true));
 
 
-        public System.Windows.Media.Brush MenuIconColor
+        public Brush MenuIconColor
         {
-            get { return (System.Windows.Media.Brush)GetValue(MenuIconColorProperty); }
+            get { return (Brush)GetValue(MenuIconColorProperty); }
             set { SetValue(MenuIconColorProperty, value); }
         }
-
         public static readonly DependencyProperty MenuIconColorProperty =
-            DependencyProperty.Register("MenuIconColor", typeof(System.Windows.Media.Brush), typeof(HamburgerMenu), new PropertyMetadata(System.Windows.Media.Brushes.White));
-
+            DependencyProperty.Register("MenuIconColor", typeof(Brush), typeof(HamburgerMenu), new PropertyMetadata(Brushes.White));
 
         public Brush SelectionIndicatorColor
         {
